@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assests/styles/main.css">
+    <title>About Me</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+/* General styles for the body */
+body {
+    line-height: 1.6;
+}
+
+/* Main content area */
+main {
+    padding: 2dvh;
+    max-width: 100%;
+}
+
+/* Common styling for all sections */
+section {
+    background-color: white;
+    border: 0.25em solid var(--border-color);
+    border-radius: 1dvw;
+    padding: 3dvh;
+    margin-bottom: 3dvh;
+    box-shadow: 0 0 2dvh rgba(0, 0, 0, 0.1);
+}
+
+/* Common header for all sections */
+section h2 {
+    font-family: var(--header-font-stack);
+    font-size: 1.5rem;
+    color: var(--secondary-color);
+    margin-bottom: 1.5dvh;
+}
+
+/* Styling for blockquote (used in Motto section) */
+blockquote {
+    font-size: 1.25rem;
+    font-style: italic;
+    color: var(--text-color);
+    padding: 1dvh;
+    background-color: var(--accent-color);
+    border-left: 5px solid var(--accent-color);
+    margin: 2dvh 0;
+}
+
+/* Bio Section */
+#bio {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* Bio Image */
+#bio figure {
+    background-color: white;
+    border: 0.25em solid var(--border-color);
+    border-radius: 1dvw;
+    padding: 3dvh;
+    margin-bottom: 3dvh;
+    animation-name: borderAnimation;
+    animation-duration: 4s;
+    animation-iteration-count: infinite; /* Optional: makes the animation loop indefinitely */
+}
+
+/* Border Animation */
+@keyframes borderAnimation {
+    0%   { border-color: red; }
+    25%  { border-color: yellow; }
+    50%  { border-color: blue; }
+    75%  { border-color: orange; }
+    100% { border-color: green; }
+}
+
+/* Bio Text */
+#bio aside {
+    width: 40%;
+    padding-left: 0.5rem;
+    margin-left: 0.5rem;
+    font-style: italic;
+    color: var(--secondary-color);
+}
+
+/* Vocabulary Section */
+
+#favwords dl {
+    font-size: 1rem;
+    color: var(--text-color);
+}
+
+#favwords dt {
+    font-weight: bold;
+}
+
+#favwords dd {
+    font-style: italic;
+    color: var(--secondary-color);
+}
+
+/* Quote Section */
+#quote {
+    padding-top: 2dvh;
+    transform: rotate(0.99turn);
+}
+
+/* Heart Section (Canvas) */
+#heart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 2dvh;
+}
+
+
+
+    </style>
+</head>
+<body>
+    <header>
+       
+        <nav>
+            <a href="./index.html">Homepage</a>
+            <a href="./about.html">AboutMe</a>
+            <a href="./resume.html">Resume</a>
+            <a href="./project.html">Project</a>
+            <a href="./contact.html">Contact</a>
+            <a href="./garden.html">Garden</a>
+        </nav>
+        <aside>
+            <search>
+                <form>
+                    <input name="search" id="search" placeholder="Search My Website"> <button type = "button">Search</button>
+                </form>
+            </search>
+        </aside>
+          
+        
+    </header>
+    <main>
+        <h1> Who am I?</h1>
+        <br>
+        <section id = "bio">
+            
+                <figure>
+                    <img src="./assests/images/professional_pic.jpeg" 
+                        alt="Professional Picture of Me">
+                        <figcaption>Professional Photo</figcaption>
+                </figure>
+                <aside>
+                    <p> Hello! My name is Allison Chan and I am a current 4th year student studying Computer Science at UCSD.</p>
+                </aside>
+                <br>
+          
+        </section>
+        <br>
+        <section id = "favwords">
+            <h2> My Vocabulary</h2>
+            <dl>
+                <dt>
+                    <b>吃醋</b>
+                </dt>
+                <dd> <i><del>jealous</del><ins><em></em> eat vinegar</ins> </i></dd>
+                <dt>
+                    <b>Boba</b>
+                </dt>
+                <dd> <i>a popular tea drink from Taiwan with chewy pearls </i></dd>
+                <dt>
+                    <b>Procrastination</b>
+                </dt>
+                <dd> <i>a habit I am learning to break</i></dd>
+            </dl>
+        </section>
+
+        <section id = "quote">
+            <h2> Motto:</h2>
+            <blockquote>
+                <!-- add a css thingy -->
+                <abbr title="You Only Live Once">YOLO</abbr> 
+                <cite>- Allison 2025 </cite>
+            </blockquote>
+        </section>
+
+        <div id="heart">
+
+                <canvas id="myCanvas" height="200" width="200"></canvas>
+                <script>
+                    const canvas = document.getElementById("myCanvas");
+                    const ctx = canvas.getContext("2d");
+                    ctx.beginPath();
+                        ctx.moveTo(100, 50);
+                        ctx.bezierCurveTo(100, 10, 37.5, 10, 37.5, 50);
+                        ctx.bezierCurveTo(37.5, 90, 100, 150, 100, 150);
+                        ctx.bezierCurveTo(112.5, 140, 162.5, 90, 162.5, 50);
+                        ctx.bezierCurveTo(162.5, 10, 100, 10, 100, 50);
+                    ctx.stroke();
+                    ctx.fill();
+                    ctx.closePath();
+                </script>
+        </div>
+ 
+    </main>
+    <footer>
+        <br>
+        <address>
+            Created by <a href="mailto:allybc1124@gmail.com">Allison Chan</a><br> 
+            Last Updated: July 2025<br>
+            Current Status: Doing my best :/ <br>
+            Published through Netlify
+        </address>
+    </footer>
+    
+    
+</body>
+</html>

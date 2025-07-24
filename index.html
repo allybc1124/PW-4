@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./assests/styles/main.css">
+        <title>Allison Chan's Website</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            main {
+                padding: 2dvh;
+                max-width: 100%;
+            }
+
+            h1, h2 {
+                font-family: var(--header-font-stack), serif;
+                color: var(--text-color);
+                font-size: 2rem;
+            }
+
+            section {
+                background-color: white;
+                border: 0.25em solid var(--border-color);
+                border-radius: 1dvw;
+                padding: 3dvh;
+                margin-bottom: 3dvh;
+                box-shadow: 0 0 2dvh rgba(0, 0, 0, 0.1);
+            }
+
+            #profile-image {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 3dvh;
+                flex-wrap: wrap; 
+            }
+
+            #profile-image picture {
+                max-width: 100%;
+                height: auto;
+            }
+
+            #profile-image img {
+                max-width: 50%;
+                height: auto;
+                border-radius: 1dvw;  /* Optional: Adds rounded corners to the image */
+            }
+
+            #profile-image aside {
+                max-width: 40%;
+                padding: 2dvh;
+                word-wrap: break-word;  
+                box-sizing: border-box;
+            }
+
+            #profile-image aside h3 {
+                font-size: 1.25rem;
+                margin-bottom: 1dvh;
+            }
+
+            #profile-image aside p {
+                font-size: 1rem;
+                color: var(--text-color);
+                line-height: 1.5;
+            }
+
+        </style>
+    </head>
+    <body>
+        <header>
+            <nav>
+                <a href="./index.html">Homepage</a>
+                <a href="./about.html">AboutMe</a>
+                <a href="./resume.html">Resume</a>
+                <a href="./project.html">Project</a>
+                <a href="./contact.html">Contact</a>
+                <a href="./garden.html">Garden</a>
+            </nav>
+            <aside>
+                <search>
+                    <form>
+                        <input name="search" id="search" placeholder="Search My Website"> <button type="button">Search</button>
+                    </form>
+                </search>
+            </aside>
+
+            <script>
+                class Welcome extends HTMLElement {
+                    connectedCallback() {
+                        console.log("Welcome to Allison's Webpage");
+                    }
+                }
+
+                customElements.define('welcome-user', Welcome);
+            </script>
+            <welcome-user></welcome-user>
+
+            <noscript>
+                <p>
+                    Currently JavaScript is unenabled. Enable Javascript for full experience! 
+                    <kbd>Ctrl</kbd> + <kbd>R</kbd> to reload.
+                </p>
+            </noscript>
+        </header>
+
+        <main>
+            <h1>Allison Chan's Homepage</h1>
+            <section id="intro">
+                <h2>Welcome to My Homepage, look around to learn more!</h2>
+            </section>
+
+            <section id="profile-image">
+                <picture>
+                    <!-- Portrait crop for mobile -->
+                    <source media="(max-width: 480px)" srcset="./assests/images/vertical_me.png">
+                     
+                    <!-- Landscape crop for tablet -->
+                    <source media="(max-width: 768px)" srcset="./assests/images/horizontal_me.jpeg">
+                    
+                    <!-- Default landscape image -->
+                    <img src="./assests/images/horizontal_me.jpeg" alt="Art direction example using picture element" width="800" height="400">
+                </picture>
+
+                <aside>
+                    <h3>Me!</h3>
+                    <p>Image changes based on device!</p>
+                </aside>
+            </section>
+        </main>
+
+        <footer>
+            <br>
+            <address>
+                Created by <a href="mailto:allybc1124@gmail.com">Allison Chan</a><br> 
+                Last Updated: July 2025<br>
+                Current Status: Doing my best :/ <br>
+                Published through Netlify
+            </address>
+        </footer>
+    </body>
+</html>

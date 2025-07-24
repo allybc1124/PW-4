@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assests/styles/main.css">
+    <title>Resume</title>
+
+    <style>
+        * {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+        body{
+            main{
+                padding: 2dvh;
+                max-width: 100%;
+            }
+            section {
+                background-color: white;
+                border: 0.25em solid var(--border-color);
+                border-radius: 1dvw;
+                padding: 3dvh;
+                margin-bottom: 3dvh;
+            }
+
+            section h3 {
+                font-family: var(--header-font-stack), serif;
+                color: var(--secondary-color);
+                font-size: 1.5rem;
+                margin-bottom: 1.5dvh;
+            }
+            section p {
+                font-size: 1.25rem;
+                color: var(--secondary-color);
+                margin-bottom: 1dvh;
+            }
+            section ul {
+                list-style-type: "-";
+                margin-left: 3dvw;
+                margin-bottom: 1dvh;
+            }
+            section ul li p{
+                font-size: 1rem;
+                color: var(--text-color);
+            }
+
+            .employment-content {
+                display: flex;
+                gap: 3dvw; /* Adjust spacing between the list and iframe */
+                justify-content: space-between;
+               
+            }
+
+            .employment-content ul {
+                flex: 1;
+                list-style-type: "-";
+                margin-left: 3dvw;
+                margin-bottom: 1dvh;
+            }
+
+            .employment-iframe {
+                flex: 1;
+                max-width: 1000%; /* Adjust width of iframe */
+                max-height: 15%;
+            }
+
+            .employment-iframe iframe {
+                width: 100%;
+                height: 50vh; /* Adjust height of iframe */
+                border: 0.25em solid var(--border-color);
+            }
+
+        }
+
+    </style>
+    
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="./index.html">Homepage</a>
+            <a href="./about.html">AboutMe</a>
+            <a href="./resume.html">Resume</a>
+            <a href="./project.html">Project</a>
+            <a href="./contact.html">Contact</a>
+            <a href="./garden.html">Garden</a>
+        </nav>
+        <aside>
+            <search>
+                <form>
+                    <input name="search" id="search" placeholder="Search My Website"> <button type = "button">Search</button>
+                </form>
+            </search>
+        </aside>
+          
+    </header>
+    <main>
+        <h1>Resume</h1>
+        <section id = education>
+            <h2>Education</h2>
+            <h3>University of California, San Diego</h3>
+            <p>B.S. Computer Science </p>
+
+            <h3> De Anza College</h3>
+            <p>Associate Degree for Transfer, Computer Science</p>
+            <hr>
+        </section>
+        
+        <section id="employment">
+            <h2>Employment</h2>
+            <h3>CTI-Codeday | Software Engineer Intern</h3>
+            <div class="employment-content">
+                <ul>
+                    <li>
+                        <p>Collaborated with mentor and team on <strong>Storybook</strong>, an open source frontend workshop with millions of users, created
+                        for developmentation, testing, and documentation of UI components</p>
+                    </li>
+                    <li>
+                        <p>Worked on <em>Accessibility Addon</em> blurred border issue due to interaction between CSS method <em>blur()</em> and
+                            <em>box-shadow CSS</em>, enhancing accessibility testing accuracy</p>
+                    </li>
+                    <li><p>Utilized <em>React</em> functions to modify filter applications of components within iframe without impacting iframe border</p>
+                    </li>
+                    <li>
+                        <code>import React, {useState, useEffect} from 'react'</code>
+                    </li>
+                </ul>
+        
+                <div class="employment-iframe">
+                    <iframe src="./assests/documents/CTI_Blog.pdf" title="CTI_Blog"></iframe>
+                </div>
+            </div>
+        
+            <hr>
+        </section>
+        <section id = technical_skills>
+            <h3>Technical Skills</h3>
+            <p>Programming Languages:</p>
+            <p>Tools:</p>
+            <p>Skills:</p>
+        </section>
+        <section id = sidebar>
+            <aside>
+                <h3>Downloadables</h3>
+                <ul class = contacts>
+                    <li>
+                        <a href="./resumeweb.pdf" target = "_blank">Resume (PDF)</a>
+                    </li>
+                    <li>
+                        <!-- <a href="./faw.pdf" target = "_blank">Job FAQs</a> -->
+                        <p>Link to Cover Letter</p>
+                    </li>
+                </ul>
+            </aside>
+        </section>
+
+        
+    </main>
+    <footer>
+        <br>
+        <address>
+            Created by <a href="mailto:allybc1124@gmail.com">Allison Chan</a><br> 
+            Last Updated: July 2025<br>
+            Current Status: Doing my best :/<br> 
+            Published through Netlify
+        </address>
+    </footer>
+    
+</body>
+</html>
