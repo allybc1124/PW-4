@@ -1,0 +1,90 @@
+@import "vars.css";
+
+body{
+    font-family: var(--body-font-stack);
+    background-color: var(--background-color);
+    height: 100dvh;
+    width: 100dvw;
+
+    h1,h2,h3{
+        font-family: var(--header-font-stack);
+    }
+    
+}
+
+header {
+    font-family: var(--body-font-stack), monospace;
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    justify-content: space-between;
+    background-color: var(--primary-color);
+    border-radius: 5px;
+
+    
+
+    nav {
+        top: 0;
+        left: 0;
+        display: block;
+        padding: 0.5rem;
+        margin-bottom: 0;
+        margin-right: auto;
+        
+        ul {
+          list-style: none;
+            display: flex;
+            gap: 1rem;
+            align-items: end;
+        }
+
+        li {
+            margin-right: 2rem;
+        }
+
+        a {
+            color: var(--nav-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+
+        }
+        
+    }
+    search form {
+        display: flex;
+        align-items: center;
+    }
+    input#search {
+        padding: 10px;
+        border: 2px solid #ccc;
+        border-radius: 20px;  /* Curved edges */
+        font-size: 16px;
+        font-family: var(--body-font-stack);
+        margin-right: 10px;
+    }
+    button {
+        padding: 5px 10px;
+        background-color: var(--secondary-color); /* Blue button color */
+        color: white;
+        border: none;
+        border-radius: 15px;  /* Curved edges */
+        cursor: pointer;
+        font-size: 16px;
+        font-family: var(--body-font-stack);
+        transition: width 0.1s ease, background-color 0.1s ease; /* Transition for width and background-color */
+        width: 100%; /* Initial width */
+    }
+    
+    button:hover {
+        background-color: var(--accent-color); /* Darker blue on hover */
+        color: black;
+        width: 200px; /* Expanded width on hover */
+    }
+}
+
+footer {
+    background-color: var(--primary-color);
+}

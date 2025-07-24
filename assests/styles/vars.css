@@ -1,0 +1,34 @@
+@font-face {
+    font-family: 'JetBrainsMono';
+    src: url('./JetBrainsMono-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'PTSerifCaption-Regular';
+    src: url('./PTSerifCaption-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'DMSerifText-Regular';
+    src: url('./DMSerifText-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+:root {
+    --header-font-stack: 'DMSerifText-Regular', serif;
+    --body-font-stack: 'JetBrainsMono', monospace;
+
+
+    --background-color: #fdf9ff;
+    --text-color: #050315;
+    --primary-color: #d9d0ff;
+    --secondary-color: #3d365c;
+    --accent-color: #feb0d8;
+    --nav-color: #3d365c;
+    --border-color: #a796f3;
+
+
+}
