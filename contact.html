@@ -119,14 +119,9 @@
         const review = document.getElementById('review');
         const errorMessage = document.getElementById('error-message');
         const MAX_CHARS = 300;
-    
-        let form_errors = [];
-    
-        // Create a hidden input to store error data
-        const hiddenErrorInput = document.createElement('input');
-        hiddenErrorInput.type = 'hidden';
-        hiddenErrorInput.name = 'form-errors';
-        form.appendChild(hiddenErrorInput);
+
+   
+
     
         function showError(message, field) {
             errorMessage.textContent = message;
@@ -162,10 +157,10 @@
             const remaining = MAX_CHARS - review.value.length;
             charCount.textContent = `You have ${remaining} character${remaining !== 1 ? 's' : ''} remaining`;
     
-            if (remaining < 0) {
+            if (remaining <= 10) {
                 charCount.style.color = 'red';
                 review.classList.add('error-highlight');
-            } else if (remaining <= 30) {
+            } else if (remaining <= 30 && remaining > 10) {
                 charCount.style.color = 'orange';
                 review.classList.remove('error-highlight');
             } else {
@@ -194,18 +189,15 @@
     
         form.addEventListener('submit', (e) => {
             let isValid = true;
-            form_errors = [];
     
             // --- Validate Full Name ---
             const nameValue = fullName.value.trim();
             const namePattern = /^[a-zA-Z\s]*$/;
             if (!nameValue) {
-                form_errors.push({ field: 'full_name', message: 'Full name is required.' });
                 showError('Please enter your full name.', fullName);
                 fullName.setCustomValidity('Required');
                 isValid = false;
             } else if (!namePattern.test(nameValue)) {
-                form_errors.push({ field: 'full_name', message: `Invalid characters in name: "${nameValue}"` });
                 showError('Name contains invalid characters.', fullName);
                 fullName.setCustomValidity('Invalid characters');
                 isValid = false;
@@ -219,17 +211,14 @@
             const emailFormatPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     
             if (!emailValue) {
-                form_errors.push({ field: 'email', message: 'Email is required.' });
                 showError('Please enter your email.', emailField);
                 emailField.setCustomValidity('Required');
                 isValid = false;
             } else if (!emailCharPattern.test(emailValue)) {
-                form_errors.push({ field: 'email', message: `Email contains invalid characters: "${emailValue}"` });
                 showError('Email contains invalid characters.', emailField);
                 emailField.setCustomValidity('Invalid characters');
                 isValid = false;
             } else if (!emailFormatPattern.test(emailValue)) {
-                form_errors.push({ field: 'email', message: 'Email format is invalid.' });
                 showError('Invalid email address.', emailField);
                 emailField.setCustomValidity('Invalid format');
                 isValid = false;
@@ -240,19 +229,8 @@
             // --- Validate Review Length ---
             if (review.value.length > MAX_CHARS) {
                 const overBy = review.value.length - MAX_CHARS;
-                form_errors.push({
-                    field: 'review',
-                    message: `Review too long by ${overBy} characters`
-                });
                 showError(`Message exceeds ${MAX_CHARS} characters.`, review);
                 isValid = false;
-            }
-    
-            // Inject the form_errors array as a JSON string into the hidden field
-            hiddenErrorInput.value = JSON.stringify(form_errors);
-    
-            if (!isValid) {
-                e.preventDefault();
             }
         });
     });
@@ -344,7 +322,7 @@
                 <br><br>
                 <fieldset id = "hiddenfields">
                     <input type="hidden" name="possible_bot" id="possible_bot" value="true">
-                    <input type="hidden" name="form-errors" value="">
+                    <input type="hidden" name="form-errors" id = "form-errors" value="">
                 </fieldset>
                 
                 <input type="submit" value="Submit">
