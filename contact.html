@@ -101,11 +101,166 @@
             color: white;
 
         }
+        form #hiddenfields {
+            border: 0;
+        }
+        
         }
         
         
 
     </style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const form = document.querySelector('form');
+        const fullName = document.getElementById('full_name');
+        const emailField = document.getElementById('email_field');
+        const review = document.getElementById('review');
+        const errorMessage = document.getElementById('error-message');
+        const MAX_CHARS = 300;
+    
+        let form_errors = [];
+    
+        // Create a hidden input to store error data
+        const hiddenErrorInput = document.createElement('input');
+        hiddenErrorInput.type = 'hidden';
+        hiddenErrorInput.name = 'form-errors';
+        form.appendChild(hiddenErrorInput);
+    
+        function showError(message, field) {
+            errorMessage.textContent = message;
+            errorMessage.style.display = 'block';
+            field.classList.add('error-highlight');
+            setTimeout(() => {
+                errorMessage.style.display = 'none';
+                field.classList.remove('error-highlight');
+            }, 3000);
+        }
+    
+        const style = document.createElement('style');
+        style.innerHTML = `
+            .error-highlight {
+                border: 2px solid red !important;
+                background-color: #ffe6e6;
+            }
+            #char-count {
+                display: block;
+                font-weight: bold;
+                margin-top: -1dvh;
+                margin-bottom: 1dvh;
+            }
+        `;
+        document.head.appendChild(style);
+    
+        // Live character countdown
+        const charCount = document.createElement('small');
+        charCount.id = 'char-count';
+        review.parentNode.appendChild(charCount);
+    
+        function updateCharCount() {
+            const remaining = MAX_CHARS - review.value.length;
+            charCount.textContent = `You have ${remaining} character${remaining !== 1 ? 's' : ''} remaining`;
+    
+            if (remaining < 0) {
+                charCount.style.color = 'red';
+                review.classList.add('error-highlight');
+            } else if (remaining <= 30) {
+                charCount.style.color = 'orange';
+                review.classList.remove('error-highlight');
+            } else {
+                charCount.style.color = 'var(--text-color)';
+                review.classList.remove('error-highlight');
+            }
+        }
+    
+        review.addEventListener('input', updateCharCount);
+        updateCharCount();
+    
+        // Live mask warning (but not validation logic here)
+        fullName.addEventListener('input', (e) => {
+            const pattern = /^[a-zA-Z\s]*$/;
+            if (!pattern.test(e.target.value)) {
+                showError('Only letters and spaces are allowed in Full Name.', fullName);
+            }
+        });
+    
+        emailField.addEventListener('input', (e) => {
+            const pattern = /^[a-zA-Z0-9@._-]*$/;
+            if (!pattern.test(e.target.value)) {
+                showError('Only email-safe characters allowed.', emailField);
+            }
+        });
+    
+        form.addEventListener('submit', (e) => {
+            let isValid = true;
+            form_errors = [];
+    
+            // --- Validate Full Name ---
+            const nameValue = fullName.value.trim();
+            const namePattern = /^[a-zA-Z\s]*$/;
+            if (!nameValue) {
+                form_errors.push({ field: 'full_name', message: 'Full name is required.' });
+                showError('Please enter your full name.', fullName);
+                fullName.setCustomValidity('Required');
+                isValid = false;
+            } else if (!namePattern.test(nameValue)) {
+                form_errors.push({ field: 'full_name', message: `Invalid characters in name: "${nameValue}"` });
+                showError('Name contains invalid characters.', fullName);
+                fullName.setCustomValidity('Invalid characters');
+                isValid = false;
+            } else {
+                fullName.setCustomValidity('');
+            }
+    
+            // --- Validate Email ---
+            const emailValue = emailField.value.trim();
+            const emailCharPattern = /^[a-zA-Z0-9@._-]*$/;
+            const emailFormatPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    
+            if (!emailValue) {
+                form_errors.push({ field: 'email', message: 'Email is required.' });
+                showError('Please enter your email.', emailField);
+                emailField.setCustomValidity('Required');
+                isValid = false;
+            } else if (!emailCharPattern.test(emailValue)) {
+                form_errors.push({ field: 'email', message: `Email contains invalid characters: "${emailValue}"` });
+                showError('Email contains invalid characters.', emailField);
+                emailField.setCustomValidity('Invalid characters');
+                isValid = false;
+            } else if (!emailFormatPattern.test(emailValue)) {
+                form_errors.push({ field: 'email', message: 'Email format is invalid.' });
+                showError('Invalid email address.', emailField);
+                emailField.setCustomValidity('Invalid format');
+                isValid = false;
+            } else {
+                emailField.setCustomValidity('');
+            }
+    
+            // --- Validate Review Length ---
+            if (review.value.length > MAX_CHARS) {
+                const overBy = review.value.length - MAX_CHARS;
+                form_errors.push({
+                    field: 'review',
+                    message: `Review too long by ${overBy} characters`
+                });
+                showError(`Message exceeds ${MAX_CHARS} characters.`, review);
+                isValid = false;
+            }
+    
+            // Inject the form_errors array as a JSON string into the hidden field
+            hiddenErrorInput.value = JSON.stringify(form_errors);
+    
+            if (!isValid) {
+                e.preventDefault();
+            }
+        });
+    });
+    </script>
+    
+    
+    
+    
 </head>
 <body>
     <header>
@@ -143,7 +298,8 @@
                     <label for="full_name">Full Name: </label>
                     <input type="text" name="full_name" id="full_name" placeholder="Name"> 
                     <br>
-                    
+                    <div id="error-message" style="color: red; font-weight: bold; display: none;"></div>
+
                     <label for="email_field">Email:</label>
                     <input type="text" name="email" id="email_field" placeholder="username@email.com">
                 </fieldset>
@@ -183,10 +339,13 @@
                 <fieldset>
                     <legend><h4>Comments, Concerns, Complaints, Jokes:</h4></legend>
                     
-                    <textarea id="review" name="review" rows="4" cols="50" placeholder="insert here"></textarea>
+                    <textarea id="review" name="review" rows="4" cols="50" maxlength="300" placeholder="insert here"></textarea>
                 </fieldset>
-                
                 <br><br>
+                <fieldset id = "hiddenfields">
+                    <input type="hidden" name="possible_bot" id="possible_bot" value="true">
+                    <input type="hidden" name="form-errors" value="">
+                </fieldset>
                 
                 <input type="submit" value="Submit">
             </form>

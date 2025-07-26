@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assests/styles/main.css">
+    <title>Contact</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        main {
+            padding: 3dvh;
+        }
+
+        main h1 {
+            text-align: center;
+            color: var(--text-color);
+        }
+
+        section {
+            background-color: white;
+            border: 0.25em solid var(--border-color);
+            border-radius: 1dvw;
+            padding: 3dvh;
+            margin-bottom: 3dvh;
+        }
+
+
+        section h3 {
+            font-family: var(--header-font-stack), serif;
+            color: var(--secondary-color);
+            font-size: 1.75rem;
+            margin-bottom: 1.5dvh;
+        }
+        section p {
+            font-size: 1.25rem;
+            color: var(--text-color);
+            margin-bottom: 1dvh;
+        }
+
+        section a {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+
+        section a:hover {
+            text-decoration: underline;
+            color:var(--secondary-color);
+        }
+        main{
+            form fieldset {
+            border: 1px solid var(--border-color);
+            border-radius: 1dvw;
+            padding: 2dvh;
+        }
+
+        form legend h3 {
+            font-size: 1.75rem;
+            color: var(--secondary-color);
+        }
+
+        form label {
+            font-size: 1.25rem;
+            color: var(--text-color);
+            margin-bottom: 0.5dvh;
+            display: block;
+        }
+
+        form input,
+        form select,
+        form textarea {
+            width: 100%;
+            padding: 1dvh;
+            margin-bottom: 1.5dvh;
+            border: 0.1em solid var(--border-color);
+            border-radius: 0.5dvw;
+            font-size: 1rem;
+            font-family: var(--body-font-stack), monoscript;
+        }
+
+        form textarea {
+            resize: vertical;
+        }
+
+        form input[type="submit"] {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            padding: 1dvh 2dvw;
+            border: none;
+            border-radius: 0.5dvw;
+            cursor: pointer;
+        }
+
+        form input[type="submit"]:hover {
+            background-color: var(--secondary-color);
+            color: white;
+
+        }
+        }
+        form #bot {
+            border: none;
+        }
+        
+        
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="./index.html">Homepage</a>
+            <a href="./about.html">AboutMe</a>
+            <a href="./resume.html">Resume</a>
+            <a href="./project.html">Project</a>
+            <a href="./contact.html">Contact</a>
+            <a href="./garden.html">Garden</a>
+        </nav>
+        <aside>
+            <search>
+                <form>
+                    <input name="search" id="search" placeholder="Search My Website"> <button type = "button">Search</button>
+                </form>
+            </search>
+        </aside>
+          
+    </header>
+    <main>
+        <h1>Contact Me!</h1>
+        <section id = "socials">
+            <h3>My Socials</h3>
+            <p>Email: allybc1124@gmail.com</p>
+            <p>Linkedin: </p>
+            <a href="https://www.linkedin.com/in/allison-b-chan/">https://www.linkedin.com/in/allison-b-chan</a>
+        </section>
+        <section id="forms">
+            <form action="http://httpbin.org/get" method="get">
+                
+                <fieldset>
+                    <legend><h3>Let Me Get to Know You!</h3></legend>
+                    
+                    <label for="full_name">Full Name: </label>
+                    <input type="text" name="full_name" id="full_name" placeholder="Name" pattern="[A-Za-z\s\.\-']+"
+                    required> 
+                    <br>
+                    
+                    <label for="email_field">Email:</label>
+                    <input type="email" name="email" id="email_field" placeholder="username@email.com" required>
+                </fieldset>
+                <br>
+                <fieldset>
+                    <legend><h4>Favorite School Subject</h4></legend>
+                    
+                    <select name="subject" id="subject">
+                        <option value="" hidden>Subjects</option>
+                        <optgroup label="STEM">
+                            <option value="Math">Math</option>
+                            <option value="Science">Science</option>
+                            <option value="Computer Science">Computer Science</option>
+                        </optgroup>
+                        <optgroup label="Humanities">
+                            <option value="English">English</option>
+                            <option value="History">History</option>
+                            <option value="Art">Art</option>
+                        </optgroup>
+                    </select>
+                </fieldset>
+                <br>
+                <fieldset>
+                    <legend><h4>Favorite Ice Cream Flavor?</h4></legend>
+                    
+                    <input list="flavors" name="flavor" id="flavor">
+                    <datalist id="flavors">
+                        <option value="Vanilla"></option>
+                        <option value="Chocolate"></option>
+                        <option value="Cookies and Cream"></option>
+                        <option value="Strawberry"></option>
+                        <option value="Coconut"></option>
+                        <option value="Unicorn Sparkle"></option>
+                    </datalist>
+                </fieldset>  
+                <br>
+                <fieldset>
+                    <legend><h4>Comments, Concerns, Complaints, Jokes:</h4></legend>
+                    
+                    <textarea id="comment" name="comment" rows="4" cols="50" placeholder="insert here" minlength="10" 
+                    maxlength="300"></textarea>
+                </fieldset>
+                <fieldset id = "bot">
+                    <input type="hidden" name="possible_bot" id = "possible_bot" value="true">
+                </fieldset>
+                
+                <br><br> 
+                
+                <input type="submit" value="Submit">
+
+                <output id="erro-message">Errors in form exist, please fix!</output>
+                <output id="info-message">Form Completed!</output>
+
+
+            </form>
+        </section>
+    </main>
+    <footer>
+        <br>
+        <address>
+            Created by <a href="mailto:allybc1124@gmail.com">Allison Chan</a><br> 
+            Last Updated: July 2025<br>
+            Current Status: Doing my best :/<br>
+            Published through Netlify
+        </address>
+    </footer>
+    
+</body>
+</html>
