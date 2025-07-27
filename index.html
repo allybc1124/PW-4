@@ -24,7 +24,7 @@
             }
 
             section {
-                background-color: white;
+                background-color: var;
                 border: 0.25em solid var(--border-color);
                 border-radius: 1dvw;
                 padding: 3dvh;
@@ -68,6 +68,24 @@
                 line-height: 1.5;
             }
 
+            #theme-toggle {
+                padding: 5px 10px;
+                background-color: var(--secondary-color); /* Blue button color */
+                color: white;
+                border: none;
+                border-radius: 15px;  /* Curved edges */
+                cursor: pointer;
+                font-size: 16px;
+                font-family: var(--body-font-stack);
+                transition: width 0.1s ease, background-color 0.1s ease; /* Transition for width and background-color */
+                width: 100%; /* Initial width */
+            }
+
+            #theme-toggle:hover {
+                background-color: var(--baccent-color); /* Darker blue on hover */
+                color: black;
+            }
+
         </style>
     </head>
     <body>
@@ -85,8 +103,13 @@
                     <form>
                         <input name="search" id="search" placeholder="Search My Website"> <button type="button">Search</button>
                     </form>
+                    
                 </search>
+                
+                
+
             </aside>
+            
 
             <script>
                 class Welcome extends HTMLElement {
@@ -96,6 +119,32 @@
                 }
 
                 customElements.define('welcome-user', Welcome);
+
+               
+            document.addEventListener('DOMContentLoaded', () => {
+                const toggleBtn = document.getElementById('theme-toggle');
+                const savedTheme = localStorage.getItem('theme') || 'light';
+
+                if (savedTheme === 'dark') {
+                    document.documentElement.classList.add('dark-theme');
+                    toggleBtn.textContent = '🌙';
+                } else {
+                    toggleBtn.textContent = '🌞';
+                }
+
+                toggleBtn.addEventListener('click', () => {
+                    const isDark = document.documentElement.classList.toggle('dark-theme');
+                    if (isDark) {
+                        toggleBtn.textContent = '🌙';
+                        localStorage.setItem('theme', 'dark');
+                    } else {
+                        toggleBtn.textContent = '🌞';
+                        localStorage.setItem('theme', 'light');
+                    }
+                });
+            });
+
+
             </script>
             <welcome-user></welcome-user>
 
@@ -108,7 +157,10 @@
         </header>
 
         <main>
+            <button id="theme-toggle" title="Toggle dark/light theme">SUN BUTTON</button>
+
             <h1>Allison Chan's Homepage</h1>
+            
             <section id="intro">
                 <h2>Welcome to My Homepage, look around to learn more!</h2>
             </section>

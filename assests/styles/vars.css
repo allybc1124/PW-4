@@ -20,15 +20,28 @@
 :root {
     --header-font-stack: 'DMSerifText-Regular', serif;
     --body-font-stack: 'JetBrainsMono', monospace;
-
-
     --background-color: #fdf9ff;
     --text-color: #050315;
     --primary-color: #d9d0ff;
     --secondary-color: #3d365c;
     --accent-color: #feb0d8;
-    --nav-color: #3d365c;
-    --border-color: #a796f3;
+    --border-color:#d9d0ff ;
+    --button-border-color: #050315;
+    --button-accent-color: #feb0d8;
+    --baccent-color: #feb0d8;
 
+}
+
+.dark-theme {
+    --background-color: #3d365c;
+    --text-color: #fdf9ff;
+    --border-color: #d9d0ff;
+    --section-background: #d9d0ff;
+    --button-accent-color: #feb0d8;
+    --baccent-color: #d9d0ff ;
+
+    --secondary-color:#feb0d8 ;
+    --accent-color:#3d365c ;
+    
 
 }
