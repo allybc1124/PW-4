@@ -118,11 +118,13 @@
         const emailField = document.getElementById('email_field');
         const review = document.getElementById('review');
         const errorMessage = document.getElementById('error-message');
+        var formErrors = document.getElementById('form-errors');
         const MAX_CHARS = 300;
-
+        
+        var errorList = [];
    
 
-    
+
         function showError(message, field) {
             errorMessage.textContent = message;
             errorMessage.style.display = 'block';
@@ -131,8 +133,18 @@
                 errorMessage.style.display = 'none';
                 field.classList.remove('error-highlight');
             }, 3000);
+            //errorList.push(field);
+            //errorList.push(field.name || field.id || 'unknown');
+
+            const fieldIdentifier = field.name || field.id || 'unknown';
+
+            // Only add if it doesn't already exist in errorList
+            if (!errorList.includes(fieldIdentifier)) {
+                errorList.push(fieldIdentifier);
+            }
+
+            formErrors.value = errorList;
         }
-    
         const style = document.createElement('style');
         style.innerHTML = `
             .error-highlight {
@@ -186,8 +198,10 @@
                 showError('Only email-safe characters allowed.', emailField);
             }
         });
+
     
         form.addEventListener('submit', (e) => {
+
             let isValid = true;
     
             // --- Validate Full Name ---
@@ -233,7 +247,9 @@
                 isValid = false;
             }
         });
+       
     });
+
     </script>
     
     
